@@ -17,14 +17,10 @@ int main()
 
     PlayerCharacter player("Test", 100, 20, 10, 5);
 
-    Fight* pFight = new Fight(player);
-    pFight->addEnemy(new Monster("Rat", 15, 0, 2, 0));
-    //pFight->addEnemy(new Monster("Troll", 25, 0, 10, 0));
-    pFight->start();
-
-    delete pFight;
-    pFight = NULL;
-
+    Fight fight(player);
+    fight.addEnemy(new Monster("Rat", 15, 0, 10, 0));
+    fight.addEnemy(new Monster("Bat", 20, 0, 20, 0));
+    fight.start();
 
     return 0;
 }

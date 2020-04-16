@@ -2,6 +2,7 @@
 #define FIGHT_H
 
 #include "PlayerCharacter.h"
+#include "FightAction.h"
 
 class Fight
 {
@@ -16,11 +17,19 @@ class Fight
     private:
         PlayerCharacter* m_player;
         std::vector<Character*> m_enemies;
-        int m_focusedEnemyIndex;
-        void playerTurn();
-        void enemyTurn();
+        std::vector<FightAction*> m_fightActions;
+        bool m_fightIsOver;
+        void startTurn();
         void printPlayerInfo() const;
         void choosePlayerAction();
+        void chooseEnemyToAttack();
+        void chooseEnemiesActions();
+        void turnAftermath();
+        bool isFightOver();
+        void killEnemy(int enemyIndex);
+        void finishAction(int actionIndex);
+        void deleteEnemies();
+        void deleteActions();
 };
 
 #endif // FIGHT_H
