@@ -7,13 +7,13 @@ using namespace std;
 
 int main()
 {
-    /*
+/*
     // Create player Character
     string playerName;
     cout << "Name ?" << endl;
     getline(cin, playerName);
-    PlayerCharacter player(playerName, 100, 20);
-    */
+    PlayerCharacter player(playerName, 100, 20, 10, 5);
+*/
 
     PlayerCharacter player("Test", 100, 20, 10, 5);
 
