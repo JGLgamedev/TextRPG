@@ -44,6 +44,11 @@ int Character::getDefensePoints() const
     return m_defensePoints;
 }
 
+int Character::getSpeedPoints() const
+{
+    return m_speedPoints;
+}
+
 void Character::reduceLifePoints(int valueToReduce)
 {
     m_lifePoints -= valueToReduce;
@@ -60,6 +65,7 @@ void Character::reduceMagicPoints(int valueToReduce)
         m_magicPoints = 0;
     cout << m_name << " has lost " << valueToReduce << " MP. And now has " << m_magicPoints << " MP." << endl;
 }
+
 void Character::recoverLifePoints(int valueToRecover)
 {
     m_lifePoints += valueToRecover;
@@ -67,6 +73,7 @@ void Character::recoverLifePoints(int valueToRecover)
         m_lifePoints = m_maxLifePoints;
     cout << m_name << " has regained " << valueToRecover << " HP. And now has " << m_lifePoints << " HP." << endl;
 }
+
 void Character::recoverMagicPoints(int valueToRecover)
 {
     m_magicPoints += valueToRecover;

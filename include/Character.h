@@ -13,6 +13,7 @@ class Character
         int getMagicPoints() const;
         int getAttackPoints() const;
         int getDefensePoints() const;
+        int getSpeedPoints() const;
         void reduceLifePoints(int valueToReduce);
         void reduceMagicPoints(int valueToReduce);
         void recoverLifePoints(int valueToRecover);
@@ -26,6 +27,7 @@ class Character
         int m_maxMagicPoints;
         int m_attackPoints;
         int m_defensePoints;
+        int m_speedPoints;
 
     private:
 
