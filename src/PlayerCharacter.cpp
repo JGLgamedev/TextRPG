@@ -2,15 +2,9 @@
 
 #include <iostream>
 
-using namespace std;
-
-PlayerCharacter::PlayerCharacter(std::string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints) :
-    Character(name, lifePoints, magicPoints, attackPoints, defensePoints)
-{
-    //ctor
-}
+PlayerCharacter::PlayerCharacter(std::string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints, int speedPoints) :
+    Character(name, lifePoints, magicPoints, attackPoints, defensePoints, speedPoints)
+{}
 
 PlayerCharacter::~PlayerCharacter()
-{
-    //dtor
-}
+{}

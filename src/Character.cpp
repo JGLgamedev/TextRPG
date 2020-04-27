@@ -1,23 +1,24 @@
-#include "Character.h"
 #include <iostream>
+#include "Character.h"
+#include "Attack.h"
 
 using namespace std;
 
-Character::Character(string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints) :
+Character::Character(string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints, int speedPoints) :
     m_name(name),
     m_lifePoints(lifePoints),
     m_maxLifePoints(lifePoints),
     m_magicPoints(magicPoints),
     m_maxMagicPoints(magicPoints),
     m_attackPoints(attackPoints),
-    m_defensePoints(defensePoints)
-{
-    //ctor
-}
+    m_defensePoints(defensePoints),
+    m_speedPoints(speedPoints),
+    m_action(NULL)
+{}
 
 Character::~Character()
 {
-    //dtor
+    cleanAction();
 }
 
 string Character::getName() const
@@ -55,6 +56,8 @@ void Character::reduceLifePoints(int valueToReduce)
     if (m_lifePoints < 0)
         m_lifePoints = 0;
     cout << m_name << " has lost " << valueToReduce << " HP. And now has " << m_lifePoints << " HP." << endl;
+    if (m_lifePoints == 0)
+        cout << m_name << " is dead!" << endl;
 
 }
 
@@ -80,4 +83,29 @@ void Character::recoverMagicPoints(int valueToRecover)
     if (m_magicPoints > m_maxMagicPoints)
         m_magicPoints = m_maxMagicPoints;
     cout << m_name << " has regained " << valueToRecover << " MP. And now has " << m_magicPoints << " MP." << endl;
+}
+
+bool Character::isDead() const
+{
+    return (m_lifePoints == 0);
+}
+
+void Character::cleanAction()
+{
+    if(m_action != NULL){
+        delete m_action;
+        m_action = NULL;
+    }
+}
+
+void Character::playAction()
+{
+    m_action->play();
+    cleanAction();
+}
+
+void Character::attack(Character* target)
+{
+    cleanAction();
+    m_action = new Attack(this, target);
 }

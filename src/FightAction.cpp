@@ -1,13 +1,13 @@
 #include "FightAction.h"
 
-FightAction::FightAction(Character* protag) :
-    m_protag(protag)
+FightAction::FightAction()
 {}
 
 FightAction::~FightAction()
 {}
 
-Character* FightAction::getProtag() const
+std::string FightAction::getType() const
 {
-    return m_protag;
+    return m_type;
 }
+

@@ -7,7 +7,7 @@
 class Monster : public Character
 {
     public:
-        Monster(std::string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints);
+        Monster(std::string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints, int speedPoints);
         virtual ~Monster();
 
     protected:

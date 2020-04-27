@@ -17,19 +17,18 @@ class Fight
     private:
         PlayerCharacter* m_player;
         std::vector<Character*> m_enemies;
-        std::vector<FightAction*> m_fightActions;
-        bool m_fightIsOver;
+        std::vector<Character*> m_fighters;
         void startTurn();
+        void prepareTurn();
+        void turnAftermath();
         void printPlayerInfo() const;
         void choosePlayerAction();
         void chooseEnemyToAttack();
         void chooseEnemiesActions();
-        void turnAftermath();
-        bool isFightOver();
-        void killEnemy(int enemyIndex);
-        void finishAction(int actionIndex);
+        void orderFighters();
+        bool isOver();
+        void deleteEnemy(Character* enemy);
         void deleteEnemies();
-        void deleteActions();
 };
 
 #endif // FIGHT_H
