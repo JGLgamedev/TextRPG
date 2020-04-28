@@ -18,7 +18,7 @@ int main()
     // Start a Fight
     PlayerCharacter player("Toto", 100, 20, 10, 5, 20);
     Fight fight(player);
-    fight.addEnemy(new Monster("Rat", 15, 0, 10, 0, 10));
+    fight.addEnemy(new Monster("Bat", 15, 0, 10, 0, 30));
     fight.addEnemy(new Monster("Troll", 20, 0, 20, 0, 5));
     fight.start();
 

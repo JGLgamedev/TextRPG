@@ -37,7 +37,7 @@ void Fight::prepareTurn()
 void Fight::startTurn()
 {
     for(vector<Character*>::iterator fighter=m_fighters.begin(); fighter!=m_fighters.end(); ++fighter){
-        if((*fighter)->getLifePoints() != 0)
+        if(!(*fighter)->isDead())
             (*fighter)->playAction();
     }
 }
@@ -45,7 +45,7 @@ void Fight::startTurn()
 void Fight::turnAftermath()
 {
     for(vector<Character*>::iterator fighter=m_fighters.begin(); fighter!=m_fighters.end(); ++fighter){
-        if((*fighter)->getLifePoints() == 0)
+        if((*fighter)->isDead())
             deleteEnemy((*fighter));
     }
 }
@@ -105,9 +105,14 @@ void Fight::chooseEnemiesActions()
     }
 }
 
+bool compSpeed(Character* a, Character* b)
+{
+    return (a->getSpeedPoints() > b->getSpeedPoints());
+}
+
 void Fight::orderFighters()
 {
-    // order m_fighters by speed
+    sort(m_fighters.begin(), m_fighters.end(), compSpeed);
 }
 
 void Fight::addEnemy(Character* enemy)

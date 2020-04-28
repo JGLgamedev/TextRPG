@@ -56,9 +56,12 @@ void Character::reduceLifePoints(int valueToReduce)
     if (m_lifePoints < 0)
         m_lifePoints = 0;
     cout << m_name << " has lost " << valueToReduce << " HP. And now has " << m_lifePoints << " HP." << endl;
-    if (m_lifePoints == 0)
-        cout << m_name << " is dead!" << endl;
 
+    // bug if a character is attacked twice and died on the first attack, this will be printed twice
+    // not a problem for now since we only have one player character
+    if (m_lifePoints == 0) {
+        cout << m_name << " is dead!" << endl;
+    }
 }
 
 void Character::reduceMagicPoints(int valueToReduce)
