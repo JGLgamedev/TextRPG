@@ -16,5 +16,7 @@ Attack::~Attack()
 void Attack::play()
 {
     cout << m_attacker->getName() << " attacks " << m_target->getName() << "!" << endl;
+    Sleep(1000);
+
     m_target->reduceLifePoints(m_attacker->getAttackPoints());
 }

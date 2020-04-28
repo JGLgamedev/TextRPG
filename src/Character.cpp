@@ -55,12 +55,15 @@ void Character::reduceLifePoints(int valueToReduce)
     m_lifePoints -= valueToReduce;
     if (m_lifePoints < 0)
         m_lifePoints = 0;
+
     cout << m_name << " has lost " << valueToReduce << " HP. And now has " << m_lifePoints << " HP." << endl;
+    Sleep(1000);
 
     // bug if a character is attacked twice and died on the first attack, this will be printed twice
     // not a problem for now since we only have one player character
     if (m_lifePoints == 0) {
         cout << m_name << " is dead!" << endl;
+        Sleep(1000);
     }
 }
 
@@ -69,7 +72,9 @@ void Character::reduceMagicPoints(int valueToReduce)
     m_magicPoints -= valueToReduce;
     if (m_magicPoints < 0)
         m_magicPoints = 0;
+
     cout << m_name << " has lost " << valueToReduce << " MP. And now has " << m_magicPoints << " MP." << endl;
+    Sleep(1000);
 }
 
 void Character::recoverLifePoints(int valueToRecover)
@@ -77,7 +82,9 @@ void Character::recoverLifePoints(int valueToRecover)
     m_lifePoints += valueToRecover;
     if (m_lifePoints > m_maxLifePoints)
         m_lifePoints = m_maxLifePoints;
+
     cout << m_name << " has regained " << valueToRecover << " HP. And now has " << m_lifePoints << " HP." << endl;
+    Sleep(1000);
 }
 
 void Character::recoverMagicPoints(int valueToRecover)
@@ -85,7 +92,9 @@ void Character::recoverMagicPoints(int valueToRecover)
     m_magicPoints += valueToRecover;
     if (m_magicPoints > m_maxMagicPoints)
         m_magicPoints = m_maxMagicPoints;
+
     cout << m_name << " has regained " << valueToRecover << " MP. And now has " << m_magicPoints << " MP." << endl;
+    Sleep(1000);
 }
 
 bool Character::isDead() const

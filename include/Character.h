@@ -2,6 +2,7 @@
 #define CHARACTER_H
 
 #include <string>
+#include <windows.h>
 #include "FightAction.h"
 
 class Character

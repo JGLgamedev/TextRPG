@@ -118,7 +118,9 @@ void Fight::orderFighters()
 void Fight::addEnemy(Character* enemy)
 {
     m_enemies.push_back(enemy);
+
     cout << enemy->getName() << " appears!" << endl;
+    Sleep(1000);
 }
 
 void Fight::printPlayerInfo() const
