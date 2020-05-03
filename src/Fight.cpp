@@ -67,7 +67,7 @@ void Fight::choosePlayerAction()
         cin >> chosenAction;
         switch(chosenAction){
             case 1:
-                chooseEnemyToAttack();
+                m_player->attack(chooseEnemy());
                 choiceDone = true;
                 break;
             default:
@@ -77,10 +77,11 @@ void Fight::choosePlayerAction()
     m_fighters.push_back(m_player);
 }
 
-void Fight::chooseEnemyToAttack()
+Character* Fight::chooseEnemy()
 {
     int chosenAction = -1;
     bool choiceDone = false;
+    Character* chosenEnemy(NULL);
 
     for(vector<Character*>::iterator enemy=m_enemies.begin(); enemy!=m_enemies.end(); ++enemy){
         cout << distance(m_enemies.begin(), enemy)+1 << ". Attack " << (*enemy)->getName() << endl;
@@ -91,10 +92,13 @@ void Fight::chooseEnemyToAttack()
     do{
         cin >> chosenAction;
         if(chosenAction <= int(m_enemies.size())){ // dirty cast
-            m_player->attack(m_enemies[chosenAction-1]);
+            chosenEnemy = m_enemies[chosenAction-1];
             choiceDone = true;
         }
     } while(!choiceDone);
+    return chosenEnemy;
+}
+
 }
 
 void Fight::chooseEnemiesActions()

@@ -23,7 +23,7 @@ class Fight
         void turnAftermath();
         void printPlayerInfo() const;
         void choosePlayerAction();
-        void chooseEnemyToAttack();
+        Character* chooseEnemy();
         void chooseEnemiesActions();
         void orderFighters();
         bool isOver();
