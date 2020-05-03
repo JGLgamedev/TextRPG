@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Character.h"
 #include "Attack.h"
+#include "MagicAction.h"
 
 using namespace std;
 
@@ -125,4 +126,10 @@ void Character::attack(Character* target)
 {
     cleanAction();
     m_action = new Attack(this, target);
+}
+
+void Character::cast(Magic* magic, Character* target)
+{
+    cleanAction();
+    m_action = new MagicAction(magic, this, target);
 }

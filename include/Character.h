@@ -25,6 +25,7 @@ class Character
         void recoverMagicPoints(int valueToRecover);
         bool isDead() const;
         void attack(Character* target);
+        void cast(Magic* magic, Character* target);
         void playAction();
 
     protected:
@@ -36,8 +37,8 @@ class Character
         int m_attackPoints;
         int m_defensePoints;
         int m_speedPoints;
-        std::vector<Magic*> m_magics;
         FightAction* m_action;
+        std::vector<Magic*> m_magics;
         void cleanAction();
 
     private:

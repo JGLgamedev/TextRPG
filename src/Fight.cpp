@@ -59,18 +59,30 @@ void Fight::choosePlayerAction()
 {
     int chosenAction = -1;
     bool choiceDone = false;
+    Magic* chosenMagic = NULL;
+    Character* chosenEnemy = NULL;
 
     cout << "1. Attack" << endl;
+    cout << "2. Magic" << endl;
     cout << "Action?" << endl;
 
     do{
         cin >> chosenAction;
         switch(chosenAction){
             case 1:
-                m_player->attack(chooseEnemy());
+                chosenEnemy = chooseEnemy();
+                m_player->attack(chosenEnemy);
                 choiceDone = true;
                 break;
-            default:
+            case 2:
+                chosenMagic = chooseMagic();
+                if(chosenMagic->getIsOffensive()){
+                    chosenEnemy = chooseEnemy();
+                    m_player->cast(chosenMagic, chosenEnemy);
+                }
+                else
+                    m_player->cast(chosenMagic, m_player);
+                choiceDone = true;
                 break;
         }
     } while(!choiceDone);
@@ -84,7 +96,7 @@ Character* Fight::chooseEnemy()
     Character* chosenEnemy(NULL);
 
     for(vector<Character*>::iterator enemy=m_enemies.begin(); enemy!=m_enemies.end(); ++enemy){
-        cout << distance(m_enemies.begin(), enemy)+1 << ". Attack " << (*enemy)->getName() << endl;
+        cout << distance(m_enemies.begin(), enemy)+1 << ". " << (*enemy)->getName() << endl;
     }
     // add option to go back to previous menu
     cout << "Attack which enemy?" << endl;
@@ -99,6 +111,25 @@ Character* Fight::chooseEnemy()
     return chosenEnemy;
 }
 
+Magic* Fight::chooseMagic()
+{
+    int chosenAction = -1;
+    bool choiceDone = false;
+    vector<Magic*> magics = m_player->getMagics();
+    Magic* chosenMagic(NULL);
+
+    for(vector<Magic*>::iterator magic=magics.begin(); magic!=magics.end(); ++magic){
+        cout << distance(magics.begin(), magic)+1 << ". " << (*magic)->getName() << " " << (*magic)->getMpCost() << endl;
+    }
+
+    do{
+        cin >> chosenAction;
+        if(chosenAction <= int(magics.size())){ // dirty cast
+            chosenMagic = magics[chosenAction-1];
+            choiceDone = true;
+        }
+    } while(!choiceDone);
+    return chosenMagic;
 }
 
 void Fight::chooseEnemiesActions()

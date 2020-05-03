@@ -24,6 +24,7 @@ class Fight
         void printPlayerInfo() const;
         void choosePlayerAction();
         Character* chooseEnemy();
+        Magic* chooseMagic();
         void chooseEnemiesActions();
         void orderFighters();
         bool isOver();
