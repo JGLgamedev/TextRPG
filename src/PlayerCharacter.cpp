@@ -1,17 +1,15 @@
 #include "PlayerCharacter.h"
 
 #include <iostream>
-#include "AttackMagic.h"
-#include "HealingMagic.h"
+#include "Magic.h"
 
 using namespace std;
 
 PlayerCharacter::PlayerCharacter(std::string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints, int speedPoints) :
     Character(name, lifePoints, magicPoints, attackPoints, defensePoints, speedPoints)
 {
-    m_magics.push_back(new HealingMagic("Heal", 30, 5, false));
-    m_magics.push_back(new AttackMagic("Fire Ball", 15, 5, false));
-    m_magics.push_back(new AttackMagic("Ice Breath", 15, 10, true));
+    m_magics.push_back(new Magic("Heal", 30, 5, false));
+    m_magics.push_back(new Magic("Fire Ball", 20, 10, true));
 }
 
 PlayerCharacter::~PlayerCharacter()
