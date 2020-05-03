@@ -50,6 +50,11 @@ int Character::getSpeedPoints() const
     return m_speedPoints;
 }
 
+std::vector<Magic*> Character::getMagics()
+{
+    return m_magics;
+}
+
 void Character::reduceLifePoints(int valueToReduce)
 {
     m_lifePoints -= valueToReduce;

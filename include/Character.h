@@ -2,8 +2,10 @@
 #define CHARACTER_H
 
 #include <string>
+#include <vector>
 #include <windows.h>
 #include "FightAction.h"
+#include "Magic.h"
 
 class Character
 {
@@ -16,6 +18,7 @@ class Character
         int getAttackPoints() const;
         int getDefensePoints() const;
         int getSpeedPoints() const;
+        std::vector<Magic*> getMagics();
         void reduceLifePoints(int valueToReduce);
         void reduceMagicPoints(int valueToReduce);
         void recoverLifePoints(int valueToRecover);
@@ -33,6 +36,7 @@ class Character
         int m_attackPoints;
         int m_defensePoints;
         int m_speedPoints;
+        std::vector<Magic*> m_magics;
         FightAction* m_action;
         void cleanAction();
 
