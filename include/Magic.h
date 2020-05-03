@@ -6,12 +6,11 @@
 class Magic
 {
     public:
-        Magic(std::string name, int power, int mpCost, bool isGlobal, bool isOffensive);
+        Magic(std::string name, int power, int mpCost, bool isOffensive);
         virtual ~Magic();
         std::string getName()const;
         int getPower() const;
         int getMpCost() const;
-        bool getIsGlobal() const;
         bool getIsOffensive() const;
 
     protected:
@@ -20,7 +19,6 @@ class Magic
         std::string m_name;
         int m_power;
         int m_mpCost;
-        bool m_isGlobal;
         bool m_isOffensive;
 };
 

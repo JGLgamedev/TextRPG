@@ -2,11 +2,10 @@
 
 using namespace std;
 
-Magic::Magic(string name, int power, int mpCost, bool isGlobal, bool isOffensive):
+Magic::Magic(string name, int power, int mpCost, bool isOffensive):
     m_name(name),
     m_power(power),
     m_mpCost(mpCost),
-    m_isGlobal(isGlobal),
     m_isOffensive(isOffensive)
 {}
 
@@ -31,9 +30,4 @@ int Magic::getMpCost() const
 bool Magic::getIsOffensive() const
 {
     return m_isOffensive;
-}
-
-bool Magic::getIsGlobal() const
-{
-    return m_isGlobal;
 }
