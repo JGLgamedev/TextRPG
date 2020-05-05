@@ -17,6 +17,8 @@ void Attack::play()
 {
     cout << m_attacker->getName() << " attacks " << m_target->getName() << "!" << endl;
     Sleep(1000);
-
-    m_target->reduceLifePoints(m_attacker->getAttackPoints());
+    int damage = m_attacker->getAttackPoints() - m_target->getDefensePoints();
+    if (damage < 0)
+        damage = 0;
+    m_target->reduceLifePoints(damage);
 }
