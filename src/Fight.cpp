@@ -14,7 +14,7 @@ Fight::~Fight()
     deleteEnemies();
 }
 
-void Fight::start()
+bool Fight::start()
 {
     cout << "Fight!" << endl;
     do{
@@ -23,11 +23,14 @@ void Fight::start()
         turnAftermath();
     } while (!isOver());
 
-    if(m_enemies.empty())
+    if(m_enemies.empty()){
         cout << "Fight won!" << endl;
+        return true;
+    }
     else{
         cout << "Fight lost!" << endl;
         deleteEnemies();
+        return false;
     }
 
 }

@@ -9,7 +9,7 @@ class Fight
     public:
         Fight(PlayerCharacter &player);
         virtual ~Fight();
-        void start();
+        bool start();
         void addEnemy(std::string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints, int speedPoints);
 
     protected:
