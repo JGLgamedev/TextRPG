@@ -1,10 +1,15 @@
 #include <iostream>
 #include "Character.h"
-#include "Attack.h"
+#include "AttackAction.h"
 #include "MagicAction.h"
 
 using namespace std;
 
+/**
+    Constructor
+    Takes the character's stats as arguments.
+    FightAction pointer set to NULL.
+*/
 Character::Character(string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints, int speedPoints) :
     m_name(name),
     m_lifePoints(lifePoints),
@@ -125,7 +130,7 @@ void Character::playAction()
 void Character::attack(Character* target)
 {
     cleanAction();
-    m_action = new Attack(this, target);
+    m_action = new AttackAction(this, target);
 }
 
 void Character::cast(Magic* magic, Character* target)
