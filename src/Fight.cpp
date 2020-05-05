@@ -1,7 +1,7 @@
 #include "Fight.h"
 #include <iostream>
 #include <algorithm>
-
+#include "Monster.h"
 using namespace std;
 
 Fight::Fight(PlayerCharacter &player):
@@ -150,11 +150,12 @@ void Fight::orderFighters()
     sort(m_fighters.begin(), m_fighters.end(), compSpeed);
 }
 
-void Fight::addEnemy(Character* enemy)
+void Fight::addEnemy(string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints, int speedPoints)
 {
-    m_enemies.push_back(enemy);
+    Character* newMonster = new Monster(name, lifePoints, magicPoints, attackPoints, defensePoints, speedPoints);
+    m_enemies.push_back(newMonster);
 
-    cout << enemy->getName() << " appears!" << endl;
+    cout << newMonster->getName() << " appears!" << endl;
     Sleep(1000);
 }
 

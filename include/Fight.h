@@ -10,7 +10,7 @@ class Fight
         Fight(PlayerCharacter &player);
         virtual ~Fight();
         void start();
-        void addEnemy(Character* enemy);
+        void addEnemy(std::string name, int lifePoints, int magicPoints, int attackPoints, int defensePoints, int speedPoints);
 
     protected:
 
