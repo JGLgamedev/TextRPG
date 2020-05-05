@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include "Monster.h"
+
 using namespace std;
 
 Fight::Fight(PlayerCharacter &player):
@@ -21,7 +22,14 @@ void Fight::start()
         startTurn();
         turnAftermath();
     } while (!isOver());
-    cout << "Fight ended!" << endl;
+
+    if(m_enemies.empty())
+        cout << "Fight won!" << endl;
+    else{
+        cout << "Fight lost!" << endl;
+        deleteEnemies();
+    }
+
 }
 
 void Fight::prepareTurn()
@@ -45,14 +53,14 @@ void Fight::startTurn()
 void Fight::turnAftermath()
 {
     for(vector<Character*>::iterator fighter=m_fighters.begin(); fighter!=m_fighters.end(); ++fighter){
-        if((*fighter)->isDead())
+        if((*fighter)->isDead() && (*fighter) != m_player)
             deleteEnemy((*fighter));
     }
 }
 
 bool Fight::isOver()
 {
-    return (m_enemies.empty());
+    return (m_enemies.empty() || m_player->isDead());
 }
 
 void Fight::choosePlayerAction()
@@ -98,7 +106,7 @@ Character* Fight::chooseEnemy()
     for(vector<Character*>::iterator enemy=m_enemies.begin(); enemy!=m_enemies.end(); ++enemy){
         cout << distance(m_enemies.begin(), enemy)+1 << ". " << (*enemy)->getName() << endl;
     }
-    // add option to go back to previous menu
+    // no option to go back to previous menu
     cout << "Attack which enemy?" << endl;
 
     do{
