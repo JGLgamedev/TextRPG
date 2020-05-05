@@ -2,6 +2,9 @@
 
 using namespace std;
 
+/**
+    Constructor
+*/
 Magic::Magic(string name, int power, int mpCost, bool isOffensive):
     m_name(name),
     m_power(power),
@@ -9,25 +12,19 @@ Magic::Magic(string name, int power, int mpCost, bool isOffensive):
     m_isOffensive(isOffensive)
 {}
 
+/**
+    Destructor
+*/
 Magic::~Magic()
 {}
 
-string Magic::getName()const
-{
-    return m_name;
-}
+/**
+    Accessors for the different attributes
+*/
+string Magic::getName()const { return m_name; }
 
-int Magic::getPower() const
-{
-    return m_power;
-}
+int Magic::getPower() const { return m_power; }
 
-int Magic::getMpCost() const
-{
-    return m_mpCost;
-}
+int Magic::getMpCost() const { return m_mpCost; }
 
-bool Magic::getIsOffensive() const
-{
-    return m_isOffensive;
-}
+bool Magic::getIsOffensive() const { return m_isOffensive; }

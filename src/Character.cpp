@@ -22,45 +22,30 @@ Character::Character(string name, int lifePoints, int magicPoints, int attackPoi
     m_action(NULL)
 {}
 
+/**
+    Destructor
+    Delete the FightAction since it was created dynamically
+*/
 Character::~Character()
 {
     cleanAction();
 }
 
-string Character::getName() const
-{
-    return m_name;
-}
+/**
+    Accessors for the different attributes
+*/
+string Character::getName() const { return m_name; }
+int Character::getLifePoints() const { return m_lifePoints; }
+int Character::getMagicPoints() const { return m_magicPoints; }
+int Character::getAttackPoints() const { return m_attackPoints; }
+int Character::getDefensePoints() const { return m_defensePoints; }
+int Character::getSpeedPoints() const { return m_speedPoints; }
+std::vector<Magic*> Character::getMagics() const { return m_magics; }
 
-int Character::getLifePoints() const
-{
-    return m_lifePoints;
-}
-
-int Character::getMagicPoints() const
-{
-    return m_magicPoints;
-}
-
-int Character::getAttackPoints() const
-{
-    return m_attackPoints;
-}
-int Character::getDefensePoints() const
-{
-    return m_defensePoints;
-}
-
-int Character::getSpeedPoints() const
-{
-    return m_speedPoints;
-}
-
-std::vector<Magic*> Character::getMagics()
-{
-    return m_magics;
-}
-
+/**
+    Reduce HP by the given value
+    Charatcer dies if its HP reaches 0.
+*/
 void Character::reduceLifePoints(int valueToReduce)
 {
     m_lifePoints -= valueToReduce;
@@ -70,14 +55,15 @@ void Character::reduceLifePoints(int valueToReduce)
     cout << m_name << " has lost " << valueToReduce << " HP. And now has " << m_lifePoints << " HP." << endl;
     Sleep(1000);
 
-    // bug if a character is attacked twice and died on the first attack, this will be printed twice
-    // not a problem for now since we only have one player character
     if (m_lifePoints == 0) {
         cout << m_name << " is dead!" << endl;
         Sleep(1000);
     }
 }
 
+/**
+    Reduce MP by the given value
+*/
 void Character::reduceMagicPoints(int valueToReduce)
 {
     m_magicPoints -= valueToReduce;
@@ -88,6 +74,10 @@ void Character::reduceMagicPoints(int valueToReduce)
     Sleep(1000);
 }
 
+/**
+    Reduce HP by the given value
+    Can't recover more than max HP
+*/
 void Character::recoverLifePoints(int valueToRecover)
 {
     m_lifePoints += valueToRecover;
@@ -98,6 +88,10 @@ void Character::recoverLifePoints(int valueToRecover)
     Sleep(1000);
 }
 
+/**
+    Reduce MP by the given value
+    Can't recover more than max MP
+*/
 void Character::recoverMagicPoints(int valueToRecover)
 {
     m_magicPoints += valueToRecover;
@@ -108,11 +102,19 @@ void Character::recoverMagicPoints(int valueToRecover)
     Sleep(1000);
 }
 
+/**
+    Check if Character is dead.
+    Return (bool) : TRUE if dead, FALSE if alive
+*/
 bool Character::isDead() const
 {
     return (m_lifePoints == 0);
 }
 
+/**
+    Delete the FightAction that was dynamically created attack() or cast()
+    Set FightAction pointer to NULL
+*/
 void Character::cleanAction()
 {
     if(m_action != NULL){
@@ -121,18 +123,29 @@ void Character::cleanAction()
     }
 }
 
+/**
+    Play the defined FightAction during a turn and delete it after
+*/
 void Character::playAction()
 {
     m_action->play();
     cleanAction();
 }
 
+/**
+    Dynamically creates an AttackAction
+    target (Character*) : pointer to the Character to attack
+*/
 void Character::attack(Character* target)
 {
     cleanAction();
     m_action = new AttackAction(this, target);
 }
 
+/**
+    Dynamically creates a MagicAction
+    target (Character*) : pointer to the Character to attack if it is an offensive magic, ally if it is a support magic
+*/
 void Character::cast(Magic* magic, Character* target)
 {
     cleanAction();
