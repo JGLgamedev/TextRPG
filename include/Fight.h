@@ -41,6 +41,7 @@ class Fight
         bool isOver();
         void deleteEnemy(Character* enemy);
         void deleteEnemies();
+        int getSingleDigitInt();
 };
 
 #endif // FIGHT_H

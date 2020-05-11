@@ -123,7 +123,7 @@ void Fight::choosePlayerAction()
     cout << "Action?" << endl;
 
     do{
-        cin >> chosenAction; // take player input
+        chosenAction = getSingleDigitInt(); // get a single digit integer from user
         switch(chosenAction){
             case 1: // player chooses Attack
                 chosenEnemy = chooseEnemy();
@@ -162,7 +162,7 @@ Character* Fight::chooseEnemy()
 
     cout << "Attack which enemy?" << endl;
     do{
-        cin >> chosenAction; // take player input
+        chosenAction = getSingleDigitInt(); // get a single digit integer from user
         if(chosenAction <= int(m_enemies.size())){
             chosenEnemy = m_enemies[chosenAction-1]; // the selected enemy is the number entered by the player -1
             choiceDone = true;
@@ -187,13 +187,37 @@ Magic* Fight::chooseMagic()
     }
 
     do{
-        cin >> chosenAction; // take player input
+        chosenAction = getSingleDigitInt(); // get a single digit integer from user
         if(chosenAction <= int(magics.size())){
             chosenMagic = magics[chosenAction-1]; // the selected magic spell is the number entered by the player -1
             choiceDone = true;
         }
     } while(!choiceDone); // loop as long as the player hasn't made a suitable choice
     return chosenMagic;
+}
+
+/**
+    Get a single digit integer from user.
+    Loop until a good input is given
+*/
+int Fight::getSingleDigitInt()
+{
+    string userInput;
+    bool badInput = true;
+
+    do{
+        cin >> userInput;
+        if(userInput.size() == 1 && isdigit(userInput[0])) {
+            badInput = false;
+        }
+        else{
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }while(badInput);
+
+    return stoi(userInput);
+
 }
 
 /**
